@@ -2,7 +2,7 @@
 // https://docs.swift.org/swift-book
 import SwiftUI
 
-extension View {
+public extension View {
     func backportGlassEffect<S: Shape>(_ glass: CustomGlass = .regular, in shape: S = Capsule()) -> some View {
         if #available(iOS 26, macOS 26, *) {
             return self.glassEffect(glass.glass(), in: shape)
@@ -15,20 +15,20 @@ extension View {
     }
 }
 
-struct CustomGlass {
-    static let regular = CustomGlass(type: .regular, interactive: false)
-    static let clear = CustomGlass(type: .clear, interactive: false)
+public struct CustomGlass {
+    public static let regular = CustomGlass(type: .regular, interactive: false)
+    public static let clear = CustomGlass(type: .clear, interactive: false)
     
     private let type: GlassType
     private var interactive: Bool
     private var tint: Color?
     
-    func interactive(_ value: Bool = true) -> CustomGlass {
+    public func interactive(_ value: Bool = true) -> CustomGlass {
         var copy = self
         copy.interactive = value
         return copy
     }
-    func tint(_ color: Color?) -> CustomGlass {
+    public func tint(_ color: Color?) -> CustomGlass {
         var copy = self
         copy.tint = color
         return copy
@@ -56,13 +56,13 @@ struct CustomGlass {
         }
     }
     
-    enum GlassType {
+    public enum GlassType {
         case regular
         case clear
     }
 }
 
-extension View {
+public extension View {
     @ViewBuilder func buttonStyle(_ customStyle: CustomStyle) -> some View {
         switch customStyle {
         case .glassBackport:
@@ -81,7 +81,7 @@ extension View {
     }
 }
 
-enum CustomStyle {
+public enum CustomStyle {
     case glassBackport
     case glassProminentBackport
 }
