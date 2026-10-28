@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-#if os(iOS)
+#if os(iOS) 
 internal struct _ShowcaseView: View {
     @State var log: [String] = []
     @State var backgroundStyle: Wallpaper = .colorful
@@ -448,7 +448,7 @@ internal struct _ShowcaseView: View {
 }
 #endif
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 typealias PlatformColor = UIColor
 #elseif os(macOS)
 typealias PlatformColor = NSColor

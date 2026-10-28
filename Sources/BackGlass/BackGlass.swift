@@ -4,7 +4,7 @@ import SwiftUI
 
 public extension View {
     func backportGlassEffect<S: Shape>(_ glass: CustomGlass = .regular, in shape: S = Capsule()) -> some View {
-        if #available(iOS 26, macOS 26, *) {
+        if #available(iOS 26, macOS 26, tvOS 26, *) {
             return self.glassEffect(glass.glass(), in: shape)
         } else {
             return self.background {
@@ -46,7 +46,7 @@ public struct CustomGlass {
         }
     }
     
-    @available(iOS 26, macOS 26, *)
+    @available(iOS 26, macOS 26, tvOS 26, *)
     fileprivate func glass() -> Glass {
         switch self.type {
         case .regular:
@@ -66,13 +66,13 @@ public extension View {
     @ViewBuilder func buttonStyle(_ customStyle: CustomStyle) -> some View {
         switch customStyle {
         case .glassBackport:
-            if #available(iOS 26, macOS 26, *) {
+            if #available(iOS 26, macOS 26, tvOS 26, *) {
                 self.buttonStyle(.glass)
             } else {
                 self.buttonStyle(.bordered)
             }
         case .glassProminentBackport:
-            if #available(iOS 26, macOS 26, *) {
+            if #available(iOS 26, macOS 26, tvOS 26, *) {
                 self.buttonStyle(.glassProminent)
             } else {
                 self.buttonStyle(.borderedProminent)
